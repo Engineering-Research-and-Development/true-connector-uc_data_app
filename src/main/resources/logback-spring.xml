@@ -1,0 +1,35 @@
+<configuration scan="false" debug="true">
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss} [%-5level][%30.30logger{0}.%-15.15method] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <springProfile name="test">
+        <logger name="org.springframework" level="INFO" additivity="false">
+            <appender-ref ref="console"/>
+        </logger>
+        <logger name="de.fraunhofer" level="DEBUG" additivity="false">
+            <appender-ref ref="console"/>
+        </logger>
+        <root level="WARN">
+            <appender-ref ref="console"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="default">
+        <logger name="org.springframework" level="ERROR" additivity="false">
+            <appender-ref ref="console"/>
+        </logger>
+        <logger name="de.fraunhofer" level="DEBUG" additivity="false">
+            <appender-ref ref="console"/>
+        </logger>
+         <logger name="it.eng.countryprovider" level="DEBUG" additivity="false">
+            <appender-ref ref="console"/>
+        </logger>
+        <root level="WARN">
+            <appender-ref ref="console"/>
+        </root>
+    </springProfile>
+
+</configuration>
