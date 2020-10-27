@@ -1,0 +1,24 @@
+{
+	"@context": "http://www.w3.org/ns/odrl.jsonld",
+	"@type": "ids:ContractAgreement",
+	"uid": "http://example.com/policy/restrict-access-location-failed",
+	"profile": "http://example.com/ids-profile",
+	"target": "http://mdm-connector.ids.isst.fraunhofer.de/artifact/44",
+	"provider": "http://example.com/party/my-party",
+	"consumer": "http://example.com/party/consumer-party",
+	"permission": [
+		{
+			"action": "ids:use",
+			"constraint": [
+				{
+					"leftOperand": "https://w3id.org/idsa/core/absoluteSpatialPosition",
+					"operator": "eq",
+					"rightOperand": {
+						"@value": "IT",
+						"@type": "xsd:anyURI"
+					}
+				}
+			]
+		}
+	]
+}

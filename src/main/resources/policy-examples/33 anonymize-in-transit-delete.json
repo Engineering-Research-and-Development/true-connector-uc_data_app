@@ -1,0 +1,36 @@
+{
+	"@context": "http://www.w3.org/ns/odrl.jsonld",
+	"@type": "ids:ContractAgreement",
+	"uid": "http://example.com/policy/anonymize-in-transit-delete",
+	"profile": "http://example.com/ids-profile",
+	"target": "http://mdm-connector.ids.isst.fraunhofer.de/artifact/33",
+	"provider": "http://example.com/party/my-party",
+	"consumer": "http://example.com/party/consumer-party",
+	"permission": [
+		{
+			"action": "ids:use",
+			"preobligation": [
+				{
+					"action": [
+						{
+							"rdf:value": {
+								"@id": "ids:anonymize"
+							},
+							"refinement": [
+								{
+									"leftOperand": "ids:modificationMethod",
+									"operator": "eq",
+									"rightOperand": {
+										"@value": "http://example.com/anonymize/delete",
+										"@type": "xsd:anyURI"
+									},
+									"jsonPath": "$.dateOfBirth"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
