@@ -3,7 +3,7 @@
 	"@type": "ids:ContractAgreement",
 	"uid": "http://example.com/policy/restrict-access-location-failed",
 	"profile": "http://example.com/ids-profile",
-	"target": "http://mdm-connector.ids.isst.fraunhofer.de/artifact/44",
+	"target": "http://w3id.org/engrd/connector/artifact/44",
 	"provider": "http://example.com/party/my-party",
 	"consumer": "http://example.com/party/consumer-party",
 	"permission": [
