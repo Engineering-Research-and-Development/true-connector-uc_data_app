@@ -12,10 +12,11 @@ import org.springframework.stereotype.Service;
 import de.fraunhofer.iese.ids.odrl.policy.library.model.OdrlPolicy;
 import de.fraunhofer.iese.ids.ucapp.model.entity.OdrlPolicyPersistence;
 import de.fraunhofer.iese.ids.ucapp.utils.PolicyUtil;
-import de.fraunhofer.iese.mydata.MyDataEnvironment;
+import de.fraunhofer.iese.mydata.IMyDataEnvironment;
 import de.fraunhofer.iese.mydata.component.interfaces.IBasicManagementService;
 import de.fraunhofer.iese.mydata.exception.ConflictingResourceException;
 import de.fraunhofer.iese.mydata.exception.InvalidEntityException;
+import de.fraunhofer.iese.mydata.exception.NoSuchEntityException;
 import de.fraunhofer.iese.mydata.exception.ResourceUpdateException;
 import de.fraunhofer.iese.mydata.policy.Policy;
 import de.fraunhofer.iese.mydata.policy.PolicyId;
@@ -27,12 +28,12 @@ import de.fraunhofer.iese.mydata.policy.PolicyId;
 public class PolicyService {
   private static final Logger LOG = LoggerFactory.getLogger(PolicyService.class);
 
-  private final MyDataEnvironment myDataEnvironment;
+  private final IMyDataEnvironment myDataEnvironment;
   private final PolicyTranslationService policyTranslationService;
   private final OdrlPolicyPersistenceService odrlPolicyPersistenceService;
 
   @Autowired
-  public PolicyService(MyDataEnvironment myDataEnvironment, PolicyTranslationService policyTranslationService, OdrlPolicyPersistenceService odrlPolicyPersistenceService) {
+  public PolicyService(IMyDataEnvironment myDataEnvironment, PolicyTranslationService policyTranslationService, OdrlPolicyPersistenceService odrlPolicyPersistenceService) {
     this.myDataEnvironment = myDataEnvironment;
     this.policyTranslationService = policyTranslationService;
     this.odrlPolicyPersistenceService = odrlPolicyPersistenceService;
@@ -52,7 +53,7 @@ public class PolicyService {
       pmp.deployPolicy(myDataPolicyId); // deploy policy
       LOG.info("Successfully deployed policy. Odrl was: \n###\n{}\n###\nMyData is:\n###\n{}\n###", odrlPolicyString, myDataPolicyString);
       deploymentSucceeded = true;
-    } catch (ConflictingResourceException | InvalidEntityException | ResourceUpdateException | IOException e) {
+    } catch (ConflictingResourceException | InvalidEntityException | ResourceUpdateException | IOException | NoSuchEntityException e) {
       LOG.error("Problem while adding the new policy. Odrl was: \n###\n{}\n###\nMyData should be:\n###\n{}\n###", odrlPolicyString, myDataPolicyString, e);
     }
     if (deploymentSucceeded) {
@@ -63,7 +64,7 @@ public class PolicyService {
     }
   }
   
-  public List<OdrlPolicyPersistence> getAllOdrlPolicyPersistence(){
+  public List<OdrlPolicyPersistence> getAllOdrlPolicyPersistence() throws NoSuchEntityException{
 	for(OdrlPolicyPersistence odrlPolicyPersistence : odrlPolicyPersistenceService.getAll()) {
 		String mydataPolicyIdString = PolicyUtil.getMydataPolicyId(odrlPolicyPersistence.getPolicyId());
 		PolicyId mydataPolicyId = new PolicyId(mydataPolicyIdString);
@@ -85,7 +86,7 @@ public class PolicyService {
   	return odrlPolicyPersistenceService.getAll();
   }
   
-  public  void deleteOdrlPolicyPersistence(String id) throws NoSuchElementException, IOException, ResourceUpdateException, InvalidEntityException{
+  public  void deleteOdrlPolicyPersistence(String id) throws NoSuchElementException, IOException, ResourceUpdateException, InvalidEntityException, NoSuchEntityException, ConflictingResourceException{
 	  	boolean isdeleted = false;
 	  	PolicyId mydataPolicyId = new PolicyId(PolicyUtil.getMydataPolicyId(id));
 	  	try {

@@ -8,10 +8,10 @@ import de.fraunhofer.iese.mydata.reactive.common.Modifiers;
 import de.fraunhofer.iese.mydata.reactive.common.PepServiceDescription;
 import rx.Observable;
 
-@PepServiceDescription(component_id = "urn:component:ids:pep:usage-control-pep")
+@PepServiceDescription(componentName = "usage-control-pep")
 @Modifiers
 public interface UsageControlPep {
-  @EventSpecification(solution = "ids", action = "use")
+  @EventSpecification(action = "use")
   Observable<Event> enforceUse(
       @EventParameter(name = "TargetDataUri") String targetDataUri,
       @EventParameter(name = "MsgTarget") Object msgTarget,

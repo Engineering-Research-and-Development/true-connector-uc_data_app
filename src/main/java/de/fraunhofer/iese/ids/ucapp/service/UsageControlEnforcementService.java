@@ -1,17 +1,19 @@
 package de.fraunhofer.iese.ids.ucapp.service;
 
-import de.fraunhofer.iese.ids.ucapp.exception.UsagePermissionDeniedException;
-import de.fraunhofer.iese.ids.ucapp.mydata.UsageControlPep;
-import de.fraunhofer.iese.mydata.policy.event.Event;
-import de.fraunhofer.iese.mydata.policy.exception.EvaluationUndecidableException;
-import de.fraunhofer.iese.mydata.policy.exception.InhibitException;
-import de.fraunhofer.iese.mydata.util.MyDataUtil;
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
+import de.fraunhofer.iese.ids.ucapp.exception.UsagePermissionDeniedException;
+import de.fraunhofer.iese.ids.ucapp.mydata.UsageControlPep;
+import de.fraunhofer.iese.mydata.IMyDataEnvironment;
+import de.fraunhofer.iese.mydata.policy.event.Event;
+import de.fraunhofer.iese.mydata.policy.exception.EvaluationUndecidableException;
+import de.fraunhofer.iese.mydata.policy.exception.InhibitException;
+import de.fraunhofer.iese.mydata.util.MyDataUtil;
 
 /**
  * @author Robin Brandstaedter <Robin.Brandstaedter@iese.fraunhofer.de>
@@ -21,16 +23,18 @@ public class UsageControlEnforcementService {
   private static final Logger LOG = LoggerFactory.getLogger(UsageControlEnforcementService.class);
 
   private final UsageControlPep usageControlPep;
+  IMyDataEnvironment myDataEnvironment;
 
   @Autowired
-  public UsageControlEnforcementService(UsageControlPep usageControlPep) {
+  public UsageControlEnforcementService(UsageControlPep usageControlPep, IMyDataEnvironment myDataEnvironment) {
     this.usageControlPep = usageControlPep;
+    this.myDataEnvironment = myDataEnvironment;
   }
 
   public Object enforceUse(String targetDataUri, Object msgTarget, Object dataObject) throws UsagePermissionDeniedException {
     try {
       LOG.debug("enforceUse({}, {}, {})", targetDataUri, msgTarget, dataObject); // TODO maybe we want to remove this later?
-      final Event event = MyDataUtil.checkedBlockingGet(() -> usageControlPep.enforceUse(targetDataUri, msgTarget, dataObject));
+      final Event event = MyDataUtil.checkedBlockingGet(usageControlPep.enforceUse(targetDataUri, msgTarget, dataObject));
       return event.getParameterValue("DataObject", Object.class);
     } catch (IOException e) {
       throw new UsagePermissionDeniedException("Communication problem, this will result in inhibition.", e);

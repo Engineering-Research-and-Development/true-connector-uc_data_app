@@ -22,7 +22,20 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>11</java.version>
-		<mydata.version>4.0.0-ids-v2-SNAPSHOT</mydata.version>
+		<mydata.version>4.0.0</mydata.version>
+		
+		<start-class>de.fraunhofer.iese.ids.ucapp.UsageControlApplication</start-class>
+
+		<resource.delimiter>@</resource.delimiter>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<maven.compiler.release>${java.version}</maven.compiler.release>
+
+		<project.build.finalName>mydata.ucapp.webservice</project.build.finalName>
+		<additionalparam>-Xdoclint:none</additionalparam>
+
+		<docker.image.prefix>mydata</docker.image.prefix>
+		<docker-maven-plugin-version>1.2.1</docker-maven-plugin-version>
 	</properties>
 
 	<licenses>
@@ -63,6 +76,11 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>de.fraunhofer.iese.mydata</groupId>
+			<artifactId>core</artifactId>
+			<version>${mydata.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>de.fraunhofer.iese.mydata</groupId>
@@ -108,6 +126,7 @@
 	</dependencies>
 
 	<build>
+	<finalName>mydata.ucapp.webservice</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -145,6 +164,29 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>${docker-maven-plugin-version}</version>
+				<configuration>
+					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+					<dockerDirectory>src/main/docker</dockerDirectory>
+					<resources>
+						<resource>
+							<targetPath>/</targetPath>
+							<directory>${project.build.directory}</directory>
+							<include>${project.build.finalName}.jar</include>
+						</resource>
+					</resources>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>javax.activation</groupId>
+						<artifactId>activation</artifactId>
+						<version>1.1</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>

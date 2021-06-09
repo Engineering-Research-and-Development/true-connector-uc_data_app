@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import de.fraunhofer.iese.ids.ucapp.model.entity.OdrlPolicyPersistence;
 import de.fraunhofer.iese.ids.ucapp.service.PolicyService;
+import de.fraunhofer.iese.mydata.exception.ConflictingResourceException;
 import de.fraunhofer.iese.mydata.exception.InvalidEntityException;
+import de.fraunhofer.iese.mydata.exception.NoSuchEntityException;
 import de.fraunhofer.iese.mydata.exception.ResourceUpdateException;
 
 /**
@@ -41,12 +43,12 @@ public class OdrlPolicyController {
   }
   
   @GetMapping(value = {"/odrl","/odrl/"})
-  public ResponseEntity<List<OdrlPolicyPersistence>> getAllPolicies(){
+  public ResponseEntity<List<OdrlPolicyPersistence>> getAllPolicies() throws NoSuchEntityException{
 	  return ResponseEntity.ok(policyService.getAllOdrlPolicyPersistence());
   }
   
   @DeleteMapping(value = {"/odrl","/odrl/"})
-  public ResponseEntity<Void> deletePolicy(@RequestBody String policyId) throws NoSuchElementException, IOException, ResourceUpdateException, InvalidEntityException{
+  public ResponseEntity<Void> deletePolicy(@RequestBody String policyId) throws NoSuchElementException, IOException, ResourceUpdateException, InvalidEntityException, NoSuchEntityException, ConflictingResourceException{
 	  policyService.deleteOdrlPolicyPersistence(policyId);
 	  return ResponseEntity.ok().build();
   }

@@ -1,14 +1,15 @@
 package de.fraunhofer.iese.ids.ucapp.mydata;
 
-import de.fraunhofer.iese.ids.ucapp.service.PurposeDeterminationService;
-import de.fraunhofer.iese.mydata.registry.ActionDescription;
-import de.fraunhofer.iese.mydata.registry.ActionParameterDescription;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Component
+import de.fraunhofer.iese.ids.ucapp.service.PurposeDeterminationService;
+import de.fraunhofer.iese.mydata.pip.PipService;
+import de.fraunhofer.iese.mydata.registry.ActionDescription;
+import de.fraunhofer.iese.mydata.registry.ActionParameterDescription;
+
+@PipService(componentName = "purpose-pip")
 public class PurposePip {
   private static final Logger LOG = LoggerFactory.getLogger(PurposePip.class);
 
