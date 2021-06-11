@@ -10,9 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
+<!-- maybe change groupid and artifact id? -->
 	<groupId>de.fraunhofer.iese.ids</groupId>
 	<artifactId>ids-usage-control-app</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>ids usage control app</name>
 	<description>usage control app with rest intefaces to be able to integrate usage control fast and easy into a
         connector

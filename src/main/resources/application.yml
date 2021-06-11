@@ -48,3 +48,6 @@ countryProvider:
 #   ipAddress: 87.11.10.20
 #   client or system
   version: system
+  
+application:
+  odrlPolicyDirectory: C:\\Users\\david.jovanovic\\Documents\\work11.20\\true-connector-uc_data_app\\src\\main\\resources\\Policies

@@ -16,7 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnablePolicyEnforcementPoint(basePackages = "de.fraunhofer.iese.ids.ucapp.mydata")
 @EnableEventHistory
-@ComponentScan(basePackages = {"it.eng.countryprovider", "de.fraunhofer.iese.ids.ucapp"})
+@ComponentScan(basePackages = {"it.eng", "de.fraunhofer.iese.ids.ucapp"})
 public class UsageControlApplication {
   private static final Logger LOG = LoggerFactory.getLogger(UsageControlApplication.class);
 
