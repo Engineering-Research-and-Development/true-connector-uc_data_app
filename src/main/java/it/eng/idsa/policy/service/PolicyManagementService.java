@@ -4,8 +4,8 @@ import java.util.Map;
 
 public interface PolicyManagementService {
 	
-	public void saveToFile(String policyId, String odrlPolicyString);
+	void saveToFile(String policyId, String odrlPolicyString);
 
-	public Map<String, String> loadPoliciesFromFilesystem();
+	Map<String, String> loadPoliciesFromFilesystem();
 
 }
