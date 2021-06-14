@@ -24,7 +24,7 @@ import de.fraunhofer.iese.mydata.exception.InvalidEntityException;
 import de.fraunhofer.iese.mydata.exception.ResourceUpdateException;
 import de.fraunhofer.iese.mydata.policy.Policy;
 import de.fraunhofer.iese.mydata.policy.PolicyId;
-import it.eng.policy.service.PolicyManagementService;
+import it.eng.idsa.policy.service.PolicyManagementService;
 
 /**
  * @author Robin Brandstaedter <Robin.Brandstaedter@iese.fraunhofer.de>

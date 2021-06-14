@@ -1,4 +1,4 @@
-package it.eng.policy.service.impl;
+package it.eng.idsa.policy.service.impl;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
-import it.eng.policy.service.PolicyManagementService;
+import it.eng.idsa.policy.service.PolicyManagementService;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
