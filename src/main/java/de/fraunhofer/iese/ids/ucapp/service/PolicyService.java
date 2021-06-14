@@ -10,6 +10,8 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import de.fraunhofer.iese.ids.odrl.policy.library.model.OdrlPolicy;
@@ -35,26 +37,33 @@ public class PolicyService {
   private final PolicyTranslationService policyTranslationService;
   private final OdrlPolicyPersistenceService odrlPolicyPersistenceService;
   private final PolicyManagementService policyManagementService;
+  
+  private boolean savePoliciesToFilestorage;
 
   @Autowired
-  public PolicyService(MyDataEnvironment myDataEnvironment, PolicyTranslationService policyTranslationService, OdrlPolicyPersistenceService odrlPolicyPersistenceService, PolicyManagementService policyManagementService) {
-    this.myDataEnvironment = myDataEnvironment;
-    this.policyTranslationService = policyTranslationService;
-    this.odrlPolicyPersistenceService = odrlPolicyPersistenceService;
-    this.policyManagementService = policyManagementService;
+  public PolicyService(MyDataEnvironment myDataEnvironment, PolicyTranslationService policyTranslationService,
+			OdrlPolicyPersistenceService odrlPolicyPersistenceService, @Nullable PolicyManagementService policyManagementService,
+			@Value("${application.savePoliciesToFilestorage}") boolean savePoliciesToFilestorage) {
+		this.myDataEnvironment = myDataEnvironment;
+		this.policyTranslationService = policyTranslationService;
+		this.odrlPolicyPersistenceService = odrlPolicyPersistenceService;
+		this.policyManagementService = policyManagementService;
+		this.savePoliciesToFilestorage = savePoliciesToFilestorage;
   }
 
   @PostConstruct
   private void loadPoliciesOnStartup() {
-	LOG.info("Loading policies on startup...");
-	Map<String, String> policies = policyManagementService.loadPoliciesFromFilesystem();
-	if (null != policies) {
-		for (String policy : policies.values()) {
-			addOdrlPolicy(policy, false);
-		}
-		LOG.info("Added all policies from file system.");
-	} else {
-		LOG.info("No policies were added.");
+	if (savePoliciesToFilestorage) {
+		LOG.info("Loading policies on startup...");
+		Map<String, String> policies = policyManagementService.loadPoliciesFromFilesystem();
+		if (null != policies) {
+			for (String policy : policies.values()) {
+				addOdrlPolicy(policy, false);
+			}
+			LOG.info("Added all policies from file system.");
+		} else {
+			LOG.info("No policies were added.");
+		} 
 	}
   }
 
@@ -77,7 +86,7 @@ public class PolicyService {
     }
     if (deploymentSucceeded) {
     	this.odrlPolicyPersistenceService.addOrUpdate(odrlPolicy.getPolicyId().toString(), odrlPolicyString);
-    	if (newPolicy) {
+    	if (newPolicy && savePoliciesToFilestorage) {
 			policyManagementService.saveToFile(odrlPolicy.getPolicyId().toString(), odrlPolicyString);
 		}
 	return myDataPolicyString;

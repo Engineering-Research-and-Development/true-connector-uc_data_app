@@ -10,6 +10,7 @@ import java.util.Map;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import it.eng.policy.service.PolicyManagementService;
@@ -17,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
+@ConditionalOnProperty(name = "application.savePoliciesToFilestorage", havingValue = "true")
 public class PolicyManagementServiceImpl implements PolicyManagementService {
 	
 	@Value("${application.odrlPolicyDirectory}")

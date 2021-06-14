@@ -50,4 +50,7 @@ countryProvider:
   version: system
   
 application:
+# Controls if the policies will be saved to file storage.
+# If you are using a persistance database to store the policies set it to false. (Default = true)
+  savePoliciesToFilestorage: false
   odrlPolicyDirectory: C:\\Users\\david.jovanovic\\Documents\\work11.20\\true-connector-uc_data_app\\src\\main\\resources\\Policies
