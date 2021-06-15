@@ -21,10 +21,10 @@
         <logger name="org.springframework" level="ERROR" additivity="false">
             <appender-ref ref="console"/>
         </logger>
-        <logger name="de.fraunhofer" level="DEBUG" additivity="false">
+        <logger name="de.fraunhofer" level="INFO" additivity="false">
             <appender-ref ref="console"/>
         </logger>
-         <logger name="it.eng" level="DEBUG" additivity="false">
+         <logger name="it.eng.idsa" level="DEBUG" additivity="false">
             <appender-ref ref="console"/>
         </logger>
         <root level="WARN">

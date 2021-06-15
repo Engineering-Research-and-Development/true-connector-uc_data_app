@@ -27,7 +27,7 @@ public class PolicyManagementServiceImpl implements PolicyManagementService {
 	@Override
 	public void saveToFile(String policyId, String odrlPolicyString) {
 		String policyName = policyId.substring(policyId.lastIndexOf("/")+1);
-		File file = new File(directory + FileSystems.getDefault().getSeparator() + policyName);
+		File file = new File(directory + FileSystems.getDefault().getSeparator() + policyName + ".policy");
 		try (FileWriter fw = new FileWriter(file);){
 			log.info("Saving policy {} to disk...", policyName);
 			fw.write(odrlPolicyString);
@@ -44,10 +44,12 @@ public class PolicyManagementServiceImpl implements PolicyManagementService {
 		File[] files = new File(directory).listFiles();
 		if (ArrayUtils.isNotEmpty(files)) {
 			for (File file : files) {
-				try {
-					policies.put(file.getName(), FileUtils.readFileToString(file, "UTF-8"));
-				} catch (IOException e) {
-					log.error("Unable to read file {} because of {}", file.getName(), e);
+				if (file.getName().endsWith(".policy")) {
+					try {
+						policies.put(file.getName(), FileUtils.readFileToString(file, "UTF-8"));
+					} catch (IOException e) {
+						log.error("Unable to read file {} because of {}", file.getName(), e);
+					} 
 				}
 			}
 			log.info("All policies loaded.");
