@@ -1,0 +1,37 @@
+{    
+   "@context": {
+      "ids":"https://w3id.org/idsa/core/",
+      "idsc" : "https://w3id.org/idsa/code/"
+   },    
+  "@type": "ids:ContractAgreement",    
+  "@id": "https://w3id.org/idsa/autogen/contract/anonymize-in-transit",    
+  "profile": "http://example.com/ids-profile",    
+  "ids:provider": "ecc-provider",    
+  "ids:consumer": "ecc-consumer",    
+  "ids:permission": [{    
+      "ids:target": {
+          "@id":"http://w3id.org/engrd/connector/artifact/3"
+       },    
+      "ids:action": [{
+        "@id":"idsc:USE"
+      }], 
+    "ids:preDuty": [{    
+      "@type":"ids:Duty",  
+    "ids:action": [{
+      "rdf:value": { "@id": "idsc:ANONYMIZE" },     
+      "ids:refinement": [{    
+        "@type":"ids:Constraint",  
+        "ids:leftOperand": { "@id": "ids:modificationMethod"},  
+        "ids:operator": { "@id": "idsc:EQ"},  
+        "ids:rightOperand": { "@value": "http://example.com/anonymize/replace", "@type": "xsd:anyURI"        }, 
+        "ids:replaceWith" : { "@value": "xxxx", "@type": "xsd:string"}, 
+        "ids:jsonPath": "$.dateOfBirth", 
+        "ids:pipEndpoint": { "@id": "https//example.com/pip/modificationmethod" } 
+      }     
+] 
+    }], 
+        "ids:pxpEndpoint": { "@id": "https//example.com/pxp/anonymize" }
+  }] 
+
+  }] 
+} 
