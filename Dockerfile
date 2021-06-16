@@ -14,11 +14,8 @@ VOLUME /tmp
 # Make port 9552 available to the world outside this container
 EXPOSE 9552
 
-# The application's jar file
-ARG JAR_FILE=target/true-connector-uc_data_app-0.0.2-SNAPSHOT.jar
-
 # Add the application's jar to the container
-ADD ${JAR_FILE} ids-usage-control-app.jar
+ADD target/true-connector-uc_data_app.jar true-connector-uc_data_app.jar
 
 # Run the jar file 
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/ids-usage-control-app.jar"]

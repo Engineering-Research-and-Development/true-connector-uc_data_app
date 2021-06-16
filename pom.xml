@@ -109,6 +109,7 @@
 	</dependencies>
 
 	<build>
+	<finalName>true-connector-uc_data_app</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
