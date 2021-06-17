@@ -1,4 +1,4 @@
-package it.eng.countryprovider;
+package it.eng.idsa.countryprovider;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -53,8 +53,8 @@ public class CountryProviderClient implements CountryProvider {
 			String[] ss = result.get().split(":");
 			String possibleCountry = ss[1].trim();
 			if(possibleCountry.length() == 2 || possibleCountry.length() == 3) {
-				log.info("Country from response {}", country);
 				country = possibleCountry;
+				log.info("Country from response {}", country);
 			} else {
 				log.info("Country not obtained from response, leaving value 'null'");
 				log.debug("Processed response:\n{}", processResponse);

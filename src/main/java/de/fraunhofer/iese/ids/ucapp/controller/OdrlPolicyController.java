@@ -36,7 +36,7 @@ public class OdrlPolicyController {
 
   @PostMapping(value = "/odrl", consumes = {"application/ld+json;charset=UTF-8"})
   public ResponseEntity<String> addPolicy(@RequestBody String policy) {
-	  String mydataString = policyService.addOdrlPolicy(policy);
+	  String mydataString = policyService.addOdrlPolicy(policy, true);
     return ResponseEntity.ok(mydataString);
   }
   

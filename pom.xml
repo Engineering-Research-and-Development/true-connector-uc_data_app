@@ -10,9 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>de.fraunhofer.iese.ids</groupId>
-	<artifactId>ids-usage-control-app</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+
+	<groupId>it.eng.idsa</groupId>
+	<artifactId>true-connector-uc_data_app</artifactId>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>ids usage control app</name>
 	<description>usage control app with rest intefaces to be able to integrate usage control fast and easy into a
         connector
@@ -108,6 +109,7 @@
 	</dependencies>
 
 	<build>
+	<finalName>true-connector-uc_data_app</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

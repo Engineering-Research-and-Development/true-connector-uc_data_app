@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import it.eng.countryprovider.CountryProviderClient;
+import it.eng.idsa.countryprovider.CountryProviderClient;
 
 public class CountryProviderClientTest {
 	

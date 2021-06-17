@@ -3,7 +3,7 @@ package de.fraunhofer.iese.ids.ucapp.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.eng.countryprovider.CountryProvider;
+import it.eng.idsa.countryprovider.CountryProvider;
 import lombok.extern.slf4j.Slf4j;
 
 @Service

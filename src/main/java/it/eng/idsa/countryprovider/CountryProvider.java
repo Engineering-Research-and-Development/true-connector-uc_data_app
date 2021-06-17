@@ -1,4 +1,4 @@
-package it.eng.countryprovider;
+package it.eng.idsa.countryprovider;
 
 public interface CountryProvider {
 

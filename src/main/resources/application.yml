@@ -48,3 +48,9 @@ countryProvider:
 #   ipAddress: 87.11.10.20
 #   client or system
   version: system
+  
+application:
+# Controls if the policies will be saved to file storage.
+# If you are using a persistance database to store the policies set it to false. (Default = true)
+  savePoliciesToFilestorage: true
+  odrlPolicyDirectory:

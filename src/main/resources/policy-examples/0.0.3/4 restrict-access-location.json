@@ -1,0 +1,27 @@
+ {    
+   "@context": {
+      "ids":"https://w3id.org/idsa/core/",
+      "idsc" : "https://w3id.org/idsa/code/"
+   },    
+  "@type": "ids:ContractAgreement",    
+  "@id": "https://w3id.org/idsa/autogen/contract/restrict-access-location",    
+  "profile": "http://example.com/ids-profile",    
+  "ids:provider": "ecc-provider",    
+  "ids:consumer": "ecc-consumer",    
+  "ids:permission": [{    
+      "ids:target": {
+          "@id":"http://w3id.org/engrd/connector/artifact/4"
+       },    
+      "ids:action": [{
+        "@id":"idsc:USE"
+      }],     
+      "ids:constraint": [{    
+        "@type":"ids:Constraint",  
+        "ids:leftOperand": { "@id": "https://w3id.org/idsa/core/absoluteSpatialPosition"},  
+        "ids:operator": { "@id": "idsc:EQ"},  
+        "ids:rightOperand": { "@value": "RS", "@type": "xsd:anyURI"        }, 
+        "ids:pipEndpoint": { "@id": "https//example.com/pip/absolutespatialposition" } 
+      }     
+] 
+  }] 
+} 
