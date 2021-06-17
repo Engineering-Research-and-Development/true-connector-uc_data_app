@@ -15,7 +15,7 @@ VOLUME /tmp
 EXPOSE 9552
 
 # Add the application's jar to the container
-ADD target/true-connector-uc_data_app.jar true-connector-uc_data_app.jar
+COPY target/true-connector-uc_data_app.jar true-connector-uc_data_app.jar
 
 # Run the jar file 
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/ids-usage-control-app.jar"]
