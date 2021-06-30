@@ -13,7 +13,7 @@
 
 	<groupId>it.eng.idsa</groupId>
 	<artifactId>true-connector-uc_data_app</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>ids usage control app</name>
 	<description>usage control app with rest intefaces to be able to integrate usage control fast and easy into a
         connector
