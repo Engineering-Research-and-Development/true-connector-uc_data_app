@@ -1,5 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
+ 
+ ## [0.0.3-SNAPSHOT] - 2021-06-30
+ 
+ ### Added
+ - updated README file
 
 ## [0.0.2-SNAPSHOT] - 2021-06-21
 
@@ -8,9 +13,5 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
  - new policies format
- 
- ## [0.0.3-SNAPSHOT] - 2021-06-30
- 
- ### Added
- - updated README file
+
  
