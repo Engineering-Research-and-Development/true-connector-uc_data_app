@@ -18,7 +18,7 @@ EXPOSE 9552
 COPY target/true-connector-uc_data_app.jar true-connector-uc_data_app.jar
 
 # Run the jar file 
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/ids-usage-control-app.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/true-connector-uc_data_app.jar"]
 #Healthy Status
 HEALTHCHECK --interval=5s --retries=12 --timeout=10s \
   #CMD wget -O /dev/null http://localhost:9552/swagger-ui.html || exit 1
