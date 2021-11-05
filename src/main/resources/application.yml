@@ -16,7 +16,7 @@ spring:
         auto: update
 
 server:
-  port: 9552
+  port: 9555
 
 mydata:
   jpa:
