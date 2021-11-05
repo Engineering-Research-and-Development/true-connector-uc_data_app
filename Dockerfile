@@ -9,7 +9,6 @@ LABEL maintainer="gabriele.deluca@eng.it"
 
 # Install whois service
 # RUN yum install -y whois
-# RUN set -eux; 	apt-get update; 	apt-get install -y --no-install-recommends
 RUN set -eux; apt-get update; apt-get install -y --no-install-recommends whois ; rm -rf /var/lib/apt/lists/*
 
 # Add a volume pointing to /tmp
