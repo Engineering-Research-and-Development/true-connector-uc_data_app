@@ -10,7 +10,6 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
-
 	<groupId>it.eng.idsa</groupId>
 	<artifactId>true-connector-uc_data_app</artifactId>
 	<version>0.0.3-SNAPSHOT</version>
@@ -54,7 +53,17 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+		<dependency>
+            <artifactId>logback-classic</artifactId>
+            <groupId>ch.qos.logback</groupId>
+ 		</dependency>
 		<dependency>
 			<!-- TODO maybe we can remove this dependency when updating the Library -->
 			<groupId>org.springframework.boot</groupId>
