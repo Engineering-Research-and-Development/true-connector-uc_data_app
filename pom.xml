@@ -23,6 +23,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>11</java.version>
 		<mydata.version>4.0.0-ids-v2-SNAPSHOT</mydata.version>
+		<information.model.version>4.1.1</information.model.version>
 	</properties>
 
 	<licenses>
@@ -33,6 +34,14 @@
 			<comments>Apache 2.0 for the ucapp code, not for the mydata library</comments>
 		</license>
 	</licenses>
+	
+	<repositories>
+		<repository>
+			<id>snapshots</id>
+			<name>maven-snapshots</name>
+			<url>https://maven.iais.fraunhofer.de/artifactory/eis-ids-public</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -43,12 +52,12 @@
 		<dependency>
 			<groupId>de.fraunhofer.iese.ids.odrl</groupId>
 			<artifactId>mydata-translator</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>de.fraunhofer.iese.ids.odrl</groupId>
 			<artifactId>policy-library</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -114,6 +123,20 @@
 			<groupId>com.github.jsonld-java</groupId>
 			<artifactId>jsonld-java</artifactId>
 			<version>0.12.3</version>
+		</dependency>
+		
+		<!--  Fraunhofer InfoModel used in tests to create policies -->
+		<dependency>
+			<groupId>de.fraunhofer.iais.eis.ids.infomodel</groupId>
+			<artifactId>java</artifactId>
+			<version>${information.model.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>de.fraunhofer.iais.eis.ids</groupId>
+			<artifactId>infomodel-serializer</artifactId>
+			<version>${information.model.version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
